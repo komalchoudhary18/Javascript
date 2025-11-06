@@ -1,0 +1,104 @@
+Chalo isko teacher-style, step-by-step samjhte hain 👇
+
+🔹 Step 1: Pehle samjho — Hoisting hota kya hai?
+
+JavaScript code 2 phase me execute hota hai:
+
+Memory Creation Phase (Hoisting phase)
+→ Sabhi variables aur functions ko memory me space milta hai.
+
+Execution Phase
+→ Code line by line execute hota hai.
+
+🔹 Step 2: Function Declaration kya karti hai?
+
+Example:
+
+greet(); // ✅ ye kaam karega
+
+function greet(){
+  console.log("Hello");
+}
+
+👉 Memory Creation Phase me kya hota hai?
+
+JS engine line-by-line check karta hai.
+
+Jab usse function declaration milta hai,
+wo poora function code memory me store kar leta hai —
+function ka naam + uska pura definition.
+
+💡 So:
+
+function greet(){ console.log("Hello"); }
+
+
+➡ Memory me ban gaya:
+greet → function(){ console.log("Hello"); }
+
+Isliye code chalne se pehle hi JS ko pata hai “greet kya hai”.
+Toh hum use kahin se bhi call kar sakte hain — pehle bhi.
+
+🔹 Step 3: Function Expression me kya hota hai?
+
+Example:
+
+sayHi(); // ❌ Error
+
+const sayHi = function(){
+  console.log("Hi");
+}
+
+👉 Memory Creation Phase me kya hota hai?
+
+JS dekhta hai: const sayHi = ...
+
+Ab JS sirf variable ka naam memory me banata hai,
+lekin value assign nahi karta (wo baad me Execution Phase me hota hai).
+
+So:
+
+Memory phase:
+sayHi → uninitialized (in TDZ)
+
+Execution phase:
+sayHi = function(){ console.log("Hi"); }
+
+
+Toh jab line 1 pe sayHi() call hua — tab tak sayHi ke andar function assign hi nahi hua tha.
+Isliye error aaya:
+
+ReferenceError: Cannot access 'sayHi' before initialization
+
+🔹 Step 4: Simple Comparison Table
+Type	Memory me kya store hota hai (Hoisting Phase)	Call pehle kar sakte ho?
+Function Declaration	Function ka poora code	✅ Yes
+Function Expression	Sirf variable name (undefined / TDZ)	❌ No
+Arrow Function	Function Expression hi hota hai	❌ No
+🔹 Step 5: Ek Diagram soch lo 🧠
+Step 1: Memory Phase
+--------------------
+function greet() {...}  ✅ full function memory me chala gaya
+const sayHi = ...       ⚠️ sirf naam bana, value nahi mili (TDZ)
+
+Step 2: Execution Phase
+--------------------
+Call greet()  ✅ works
+Call sayHi()  ❌ Error (value assign nahi hui ab tak)
+
+🔹 Step 6: Real-life Example 🎯
+
+Soch lo tum kitchen me ho 🍳
+
+“Function Declaration” = recipe likh ke fridge pe chipka di hai.
+(koi bhi use kabhi bhi bana sakta hai)
+
+“Function Expression” = recipe likh rahi ho, abhi complete nahi hui.
+(jab tak likh nahi lo, koi use nahi kar sakta 😅)
+
+🔹 Step 7: Summary
+Concept	Explanation
+Hoisting	JS code ke run hone se pehle sab declarations memory me jaate hain
+Declaration Function	Pure function ko memory me store karta hai
+Expression Function / Arrow Function	Sirf variable ka naam reserve karta hai, function assign nahi karta
+Result	Declaration ko pehle call kar sakte ho, Expression ko nahi
