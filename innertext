@@ -1,0 +1,3 @@
+innerHtml---> display all data inside html tag including tags 
+innertext---> display only data which is visisble to UI
+innerContent--->excluding tags it show all the data skip tags..

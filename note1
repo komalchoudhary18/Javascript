@@ -102,3 +102,115 @@ Hoisting	JS code ke run hone se pehle sab declarations memory me jaate hain
 Declaration Function	Pure function ko memory me store karta hai
 Expression Function / Arrow Function	Sirf variable ka naam reserve karta hai, function assign nahi karta
 Result	Declaration ko pehle call kar sakte ho, Expression ko nahi
+
+
+
+🧠 What is TDZ – Temporal Dead Zone?
+
+Temporal Dead Zone means —
+a period of time during code execution
+when a variable exists in memory,
+but cannot be accessed or used yet 😵
+
+🔹 Step-by-Step Explanation
+Example:
+console.log(x); // ❌ ReferenceError
+let x = 10;
+
+
+You’ll get an error:
+
+ReferenceError: Cannot access 'x' before initialization
+
+
+But why? 🤔
+Let’s break it down ⬇️
+
+🔹 Step 1: Memory Creation Phase (Hoisting Phase)
+
+When JavaScript starts executing code, it first creates memory space for all variables and functions.
+
+Here’s what happens:
+
+var → is hoisted and initialized with undefined
+
+let and const → are hoisted, but NOT initialized ❌
+
+So memory looks like this:
+
+var a = undefined
+let x = (uninitialized)
+const y = (uninitialized)
+
+🔹 Step 2: Execution Phase
+
+Now JavaScript executes the code line by line:
+
+When it reaches console.log(x),
+the variable x already exists in memory,
+but it’s not yet initialized —
+this period is called the Temporal Dead Zone (TDZ) ⚡
+
+Once the line let x = 10; runs,
+x finally gets its value, and the TDZ ends ✅
+
+🔹 Step 3: Visualize It 🎨
+Line	Code	Description
+1	console.log(x)	❌ Error — x is in TDZ
+2	let x = 10	✅ TDZ ends here
+3	console.log(x)	✅ Prints 10
+🔹 Step 4: When Does TDZ Occur?
+Variable Type	Hoisted?	Has TDZ?	Default Value
+var	✅ Yes	❌ No	undefined
+let	✅ Yes	✅ Yes	uninitialized
+const	✅ Yes	✅ Yes	uninitialized
+🔹 Step 5: TDZ in Function Expressions
+
+Example:
+
+sayHi(); // ❌ ReferenceError
+const sayHi = function() {
+  console.log("Hi");
+};
+
+
+Explanation:
+
+sayHi is declared with const.
+
+It’s hoisted but not initialized yet.
+
+When JS tries to call it before initialization,
+it’s still in the TDZ, so you get an error:
+
+Cannot access 'sayHi' before initialization
+
+🔹 Step 6: Real-life Example 🍳
+
+Imagine you’re in a kitchen:
+
+A bowl is already kept on the counter (variable is reserved).
+
+But you haven’t put any food inside it yet (value not assigned).
+
+If someone tries to eat from that bowl — ❌ error!
+
+That empty waiting time before filling the bowl is the Temporal Dead Zone 😄
+
+🔹 Step 7: Summary Table
+Concept	Meaning
+Hoisting	All variables/functions are stored in memory before execution
+TDZ	The time period when let or const variables exist in memory but cannot be accessed
+Why it exists?	To prevent accidental use of variables before they are properly initialized
+
+
+Step 10: In Short (Interview Line)
+
+IIFE (Immediately Invoked Function Expression)
+is a JavaScript function that executes immediately after being defined.
+It’s mainly used to create a private scope, avoid global variable conflicts, and execute setup logic right away.
+
+Agar chaaho to main iska visual explanation (flow diagram) bana du —
+jisme dikhaun:
+
+Function define → parentheses → immediate call → new scope create → execute → destroy 🔁
