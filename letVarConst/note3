@@ -1,0 +1,45 @@
+Throttle vs Debounce in JavaScript
+
+## 🚀 Overview
+When users perform actions like scrolling, typing, or clicking, events fire repeatedly at high speed.  
+To optimize performance and prevent unnecessary function calls, JavaScript uses:
+
+- **Throttle**
+- **Debounce**
+
+Both help control how often a function runs, but they work differently.
+
+---
+
+# ⚡ Throttle
+
+### ✅ What is Throttle?
+Throttle ensures a function executes **at most once** in a given time interval, no matter how many times an event is fired.
+
+### 🎯 Example Use Cases
+- Scroll event
+- Resize event
+- Button click spam prevention
+- API rate limiting
+
+### 📌 Key Idea
+**Run the function every X milliseconds.**  
+If events keep firing, throttle **limits** how often the function runs.
+
+
+### Debounce
+Debounce delays the function call until the user stops performing the action for a specific amount of time.
+
+🎯 Example Use Cases
+
+Search input typing (API call)
+
+Auto-save feature
+
+Form validation
+
+Filtering / Searching
+
+📌 Key Idea
+
+Run the function only after the user stops.
